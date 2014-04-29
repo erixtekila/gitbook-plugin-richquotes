@@ -26,7 +26,7 @@ Supported annotations :
 
 - > **Caution** Caution
 
-Lowercase and spaces are allowed for annotations.
+Lowercase are allowed for annotations too.
 
 
 You can use install it via NPM:
