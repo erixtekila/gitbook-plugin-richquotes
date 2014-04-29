@@ -4,27 +4,27 @@ Gitbook plugin : Transform annoted quotes to notes
 Annotated notes are an extension of markdown blockquotes.
 Supported annotations :
 
-- > **Info** Info
+- `> **Info** Info`
 
-- > **Note** Note
+- `> **Note** Note`
 
-- > **Tag** Tag
+- `> **Tag** Tag`
 
-- > **Comment** Comment
+- `> **Comment** Comment`
 
-- > **Hint** Hint
+- `> **Hint** Hint`
 
-- > **Success** Success
+- `> **Success** Success`
 
-- > **Warning** Warning
+- `> **Warning** Warning`
 
-- > **Caution** Caution
+- `> **Caution** Caution`
 
-- > **Danger** Danger
+- `> **Danger** Danger`
 
-- > **Quote** Quote
+- `> **Quote** Quote`
 
-- > **Caution** Caution
+- `> **Caution** Caution`
 
 Lowercase are allowed for annotations too.
 
