@@ -1,5 +1,9 @@
 var cheerio = require( "cheerio" )
 	,$
+	,options =
+	{
+		todos : false
+	}
 ;
 
 module.exports = {
@@ -15,12 +19,10 @@ module.exports = {
 		init  : function ()
 		{
 			//console.log( "init!" );
-		},
-
-		// This is called after the book generation
-		finish: function ()
-		{
-			//console.log( "finish!" );
+			if( this.options.pluginsConfig && this.options.pluginsConfig.richquotes )
+			{
+				options = this.options.pluginsConfig.richquotes;
+			}
 		},
 
 		// This is called for each page of the book
@@ -34,6 +36,7 @@ module.exports = {
 				,$strong
 				,alert = "info"
 				,picto = "fa-info"
+				,isTodo = false
 				;
 			for ( var i in page.sections )
 			{
@@ -46,7 +49,7 @@ module.exports = {
 					{
 						$bq.each
 						(
-							function ( j, el )
+							function ()
 							{
 								$this = $( this );
 								$strong = $this.find( "p > strong" );
@@ -90,9 +93,27 @@ module.exports = {
 											break;
 										/* quote */
 										case "quote" :
-										case "caution" :
 											alert = "quote";
 											picto = "fa-quote-left";
+											break;
+										/* TODOs */
+										case options.todos :
+										case "todo" :
+											alert = "info";
+											picto = "fa-bookmark";
+											isTodo = true;
+											break;
+										case options.todos :
+										case "fixme" :
+											alert = "danger";
+											picto = "fa-bug";
+											isTodo = true;
+											break;
+										case options.todos :
+										case "xxx" :
+											alert = "danger";
+											picto = "fa-beer";
+											isTodo = true;
 											break;
 										// Not a note
 										default :
@@ -106,6 +127,13 @@ module.exports = {
 										;
 									$this.addClass( 'clearfix alert alert-' + alert );
 									$this.prepend( $strong );
+
+									// Remove TODOs ?
+									if( ! options.todos && isTodo )
+									{
+										$this.remove();
+										isTodo = false;
+									}
 
 									// Replace by transform
 									section.content = $.html();
