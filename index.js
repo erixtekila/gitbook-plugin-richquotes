@@ -90,6 +90,7 @@ module.exports = {
 											break;
 										/* quote */
 										case "quote" :
+										case "caution" :
 											alert = "quote";
 											picto = "fa-quote-left";
 											break;
@@ -103,7 +104,7 @@ module.exports = {
 										.empty()
 										.remove()
 										;
-									$this.addClass( 'alert alert-' + alert );
+									$this.addClass( 'clearfix alert alert-' + alert );
 									$this.prepend( $strong );
 
 									// Replace by transform
