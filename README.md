@@ -24,8 +24,6 @@ Supported annotations :
 
 - `> **Quote** Quote`
 
-- `> **Caution** Caution`
-
 Lowercase are allowed for annotations too.
 
 
