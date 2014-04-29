@@ -24,7 +24,7 @@ You can use special annotations for editorial purpose
 - `> **xxx** XXX`
 
 
-Be sure too activate the option from the `book.json file :
+Be sure too activate the option from the `book.json` file :
 
 ```json
 {
