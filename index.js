@@ -90,7 +90,6 @@ module.exports = {
 											break;
 										/* quote */
 										case "quote" :
-										case "caution" :
 											alert = "quote";
 											picto = "fa-quote-left";
 											break;
