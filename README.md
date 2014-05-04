@@ -26,6 +26,12 @@ You can use special annotations for editorial purpose
 - `> **xxx** XXX`
 
 
+You can install this plugin via NPM :
+
+```bash
+$ npm install gitbook-plugin-richquotes
+```
+
 Be sure too activate the option from the `book.json` file :
 
 ```json
@@ -40,19 +46,3 @@ Be sure too activate the option from the `book.json` file :
 	}
 }
 ```
-
-
-You can use install it via NPM:
-
-```bash
-$ npm install gitbook-plugin-richquotes
-```
-
-And use it for your book by adding `book.json`
-
-```js
-{
-	"plugins" : "richquotes"
-}
-```
-
