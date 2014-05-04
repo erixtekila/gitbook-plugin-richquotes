@@ -1,6 +1,8 @@
 Gitbook plugin : Transform annoted quotes to notes
 ==============
 
+For gitbook 0.4.2+
+
 Annotated notes are an extension of markdown blockquotes.
 Supported annotations :
 
