@@ -43,7 +43,7 @@ module.exports = {
 				section = page.sections[i];
 				if ( section.type == "normal" )
 				{
-					$ = cheerio.load( page.sections[i].content );
+					$ = cheerio.load( section.content );
 					$bq = $( "blockquote" );
 					if( $bq )
 					{
