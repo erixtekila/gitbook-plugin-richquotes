@@ -14,8 +14,8 @@ blockquote.alert
 	border-radius     : 5px;
 }
 
-.book .book-body .page-wrapper .page-inner section.normal blockquote>:last-child {
-	margin-bottom     : inherit;
+.book .book-body .page-wrapper .page-inner section.normal blockquote > :last-child {
+	margin-bottom: inherit;
 	margin-top: 15px;
 }
 
