@@ -52,7 +52,7 @@ module.exports = {
 							function ()
 							{
 								$this = $( this );
-								$strong = $this.find( "p > strong" );
+								$strong = $this.find( "p > strong:first-child" );
 								if( $strong )
 								{
 									switch ( $strong.text().toLowerCase() )
