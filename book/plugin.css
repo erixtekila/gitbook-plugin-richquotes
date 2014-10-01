@@ -1,4 +1,4 @@
-blockquote.alert strong
+blockquote.alert > strong
 {
 	display      : inline-block;
 	text-align   : center;
