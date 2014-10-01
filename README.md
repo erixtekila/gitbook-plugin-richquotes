@@ -41,7 +41,8 @@ Be sure too activate the option from the `book.json` file :
 	{
 		"richquotes" :
 		{
-			"todos" : true /*false by default*/
+			"todos" : true, /*false by default*/
+			"omitIcons" : true /*false by default*/
 		}
 	}
 }
