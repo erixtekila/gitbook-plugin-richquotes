@@ -126,7 +126,11 @@ module.exports = {
 										.remove()
 										;
 									$this.addClass( 'clearfix alert alert-' + alert );
-									$this.prepend( $strong );
+
+									//Re-add $strong if icons are enabled
+									if(! options.omitIcons){
+										$this.prepend( $strong );
+									}
 
 									// Remove TODOs ?
 									if( ! options.todos && isTodo )
