@@ -1,4 +1,4 @@
-Gitbook plugin : Transform annoted quotes to notes
+Gitbook plugin : Transform annotated quotes to notes
 ==============
 
 For gitbook 0.4.2+
