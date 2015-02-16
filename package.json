@@ -1,6 +1,6 @@
 {
 	"name"        : "gitbook-plugin-richquotes",
-	"description" : "Transform annoted quotes to notes in GitBook",
+	"description" : "Transform annotated quotes to notes in GitBook",
 	"main"        : "index.js",
 	"version"     : "0.0.5",
 	"engines"     : {
