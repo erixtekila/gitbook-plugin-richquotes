@@ -44,4 +44,5 @@ You can add user defined or override built-in annotations in `book.json` file:
 ```
 
 Refer to [Bootstrap doc](http://getbootstrap.com/components/#alerts) for alert value (`alert-` prefix is not needed).
-Refer to [FontAwesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
+
+Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
