@@ -107,25 +107,19 @@ module.exports = {
 				}
 
 				$ = cheerio.load( section.content );
-				$bq = $( "blockquote" );
-				if( !$bq )
-				{
-					continue;
-				}
-
-				$bq.each
-				(
+				$bq = $( "blockquote" ).each(
 					function ()
 					{
 						$this = $( this );
 						$strong = $this.find( "p:first-child > strong:first-child" );
-						if( !$strong ) {
+						if( !$strong )
+						{
 							return;
 						}
 
-						style = options[$strong.text().toLowerCase()]?
+						style = options[$strong.text().toLowerCase()]?  // look up annotation in options
 							options[$strong.text().toLowerCase()] :
-							{ alert: "quote", picto: "fa-quote-left" }
+							{ alert: "quote", picto: "fa-quote-left" }    // default value
 							;
 						// console.log($strong.text().toLowerCase(), style);
 
