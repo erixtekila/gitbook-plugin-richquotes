@@ -1,8 +1,64 @@
 var cheerio = require( "cheerio" )
 	,$
-	,options =
+	,options = // map annotations to styles
 	{
-		todos : false
+		/* info */
+		"info": {
+			alert: "info",
+			picto: "fa-info"
+		},
+		"note": {
+			alert: "info",
+			picto: "fa-edit"
+		},
+		"tag": {
+			alert: "info",
+			picto: "fa-tag"
+		},
+		"comment": {
+			alert: "info",
+			picto: "fa-comment-o"
+		},
+		"todo": {
+			alert: "info",
+			picto: "fa-bookmark"
+		},
+		/* success */
+		"hint": {
+			alert: "success",
+			picto: "fa-lightbulb-o"
+		},
+		"success": {
+			alert: "success",
+			picto: "fa-lightbulb-o"
+		},
+		/* warning */
+		"warning": {
+			alert: "warning",
+			picto: "fa-exclamation-triangle"
+		},
+		"caution": {
+			alert: "warning",
+			picto: "fa-exclamation-triangle"
+		},
+		/* danger */
+		"danger": {
+			alert: "danger",
+			picto: "fa-times-circle"
+		},
+		"fixme": {
+			alert: "danger",
+			picto: "fa-bug"
+		},
+		"bug": {
+			alert: "danger",
+			picto: "fa-bug"
+		},
+		/* quote */
+		"quote": {
+			alert: "quote",
+			picto: "fa-quote-left"
+		}
 	}
 ;
 
@@ -18,15 +74,20 @@ module.exports = {
 		// This is called before the book is generated
 		init  : function ()
 		{
-			//console.log( "init!" );
+			// console.log( "richquotes init!" );
 			if( this.options.pluginsConfig && this.options.pluginsConfig.richquotes )
 			{
-				options = this.options.pluginsConfig.richquotes;
+				// richquotes is a POJO, save to use for-in
+				var richquotes = this.options.pluginsConfig.richquotes;
+				for (key in richquotes) {
+					// console.log(key, richquotes[key]);
+					options[key] = richquotes[key];
+				}
 			}
 		},
 
 		// This is called for each page of the book
-		// It can be used for modifing page content
+		// It can be used for modifying page content
 		// It should return the new page
 		page  : function ( page )
 		{
@@ -34,114 +95,46 @@ module.exports = {
 				,$bq
 				,$this
 				,$strong
-				,alert = "info"
-				,picto = "fa-info"
-				,isTodo = false
+				,style
 				;
+
 			for ( var i in page.sections )
 			{
 				section = page.sections[i];
-				if ( section.type == "normal" )
+				if ( section.type !== "normal" )
 				{
-					$ = cheerio.load( section.content );
-					$bq = $( "blockquote" );
-					if( $bq )
-					{
-						$bq.each
-						(
-							function ()
-							{
-								$this = $( this );
-								$strong = $this.find( "p:first-child > strong:first-child" );
-								if( $strong )
-								{
-									switch ( $strong.text().toLowerCase() )
-									{
-										/* info */
-										case "info" :
-											alert = "info";
-											picto = "fa-info";
-											break;
-										case "note" :
-											alert = "info";
-											picto = "fa-edit";
-											break;
-										case "tag" :
-											alert = "info";
-											picto = "fa-tag";
-											break;
-										case "comment" :
-											alert = "info";
-											picto = "fa-comment-o";
-											break;
-										/* success */
-										case "hint" :
-										case "success" :
-											alert = "success";
-											picto = "fa-lightbulb-o";
-											break;
-										/* warning */
-										case "warning" :
-										case "caution" :
-											alert = "warning";
-											picto = "fa-exclamation-triangle";
-											break;
-										/* danger */
-										case "danger" :
-											alert = "danger";
-											picto = "fa-times-circle";
-											break;
-										/* quote */
-										case "quote" :
-											alert = "quote";
-											picto = "fa-quote-left";
-											break;
-										/* TODOs */
-										case options.todos :
-										case "todo" :
-											alert = "info";
-											picto = "fa-bookmark";
-											isTodo = true;
-											break;
-										case options.todos :
-										case "fixme" :
-											alert = "danger";
-											picto = "fa-bug";
-											isTodo = true;
-											break;
-										case options.todos :
-										case "xxx" :
-											alert = "danger";
-											picto = "fa-beer";
-											isTodo = true;
-											break;
-										// Not a note
-										default :
-											return;
-									}
-
-									$strong
-										.addClass( 'fa fa-4x ' + picto )
-										.empty()
-										.remove()
-										;
-									$this.addClass( 'clearfix alert alert-' + alert );
-									$this.prepend( $strong );
-
-									// Remove TODOs ?
-									if( ! options.todos && isTodo )
-									{
-										$this.remove();
-										isTodo = false;
-									}
-
-									// Replace by transform
-									section.content = $.html();
-								}
-							}
-						);
-					}
+					continue;
 				}
+
+				$ = cheerio.load( section.content );
+				$bq = $( "blockquote" ).each(
+					function ()
+					{
+						$this = $( this );
+						$strong = $this.find( "p:first-child > strong:first-child" );
+						if( !$strong )
+						{
+							return;
+						}
+
+						style = options[$strong.text().toLowerCase()]?  // look up annotation in options
+							options[$strong.text().toLowerCase()] :
+							{ alert: "quote", picto: "fa-quote-left" }    // default value
+							;
+						// console.log($strong.text().toLowerCase(), style);
+
+						$strong
+							.addClass( 'fa fa-4x ' + style.picto )
+							.empty()
+							.remove()
+							;
+						$this.addClass( 'clearfix alert alert-' + style.alert );
+						$this.prepend( $strong );
+
+						// Replace by the transformed element
+						section.content = $.html();
+					}
+				);
 			}
 
 			return page;

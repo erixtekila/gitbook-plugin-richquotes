@@ -1,21 +1,21 @@
 {
-	"name"        : "gitbook-plugin-richquotes",
-	"description" : "Transform annoted quotes to notes in GitBook",
-	"main"        : "index.js",
-	"version"     : "0.0.5",
-	"engines"     : {
-		"gitbook": "*"
-	},
-	"homepage"    : "https://github.com/erixtekila/gitbook-plugin-richquotes",
-	"repository"  : {
-		"type": "git",
-		"url" : "https://github.com/erixtekila/gitbook-plugin-richquotes.git"
-	},
-	"license"     : "Apache 2",
-	"bugs"        : {
-		"url": "https://github.com/erixtekila/gitbook-plugin-richquotes/issues"
-	},
-	"dependencies": {
-		"cheerio": "^0.15.0"
-	}
+  "name": "gitbook-plugin-richquotes",
+  "description": "Transform annoted quotes to notes in GitBook",
+  "main": "index.js",
+  "version": "0.0.6",
+  "engines": {
+    "gitbook": "*"
+  },
+  "homepage": "https://github.com/erixtekila/gitbook-plugin-richquotes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erixtekila/gitbook-plugin-richquotes.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/erixtekila/gitbook-plugin-richquotes/issues"
+  },
+  "dependencies": {
+    "cheerio": "^0.19.0"
+  }
 }

@@ -17,14 +17,7 @@ Supported annotations :
 - `> **Danger** Danger`
 - `> **Quote** Quote`
 
-Lowercase are allowed for annotations too.
-
-You can use special annotations for editorial purpose
-
-- `> **todo** TODO`
-- `> **fixme** FIXME`
-- `> **xxx** XXX`
-
+Annotations are case-insensitive.
 
 You can install this plugin via NPM :
 
@@ -32,17 +25,24 @@ You can install this plugin via NPM :
 $ npm install gitbook-plugin-richquotes
 ```
 
-Be sure too activate the option from the `book.json` file :
+You can add user defined or override built-in annotations in `book.json` file:
 
 ```json
 {
-	"plugins"   	: ["richquotes"]
-	,"pluginsConfig":
+	"plugins"		: ["richquotes"],
+	"pluginsConfig":
 	{
-		"richquotes" :
+		"richquotes":
 		{
-			"todos" : true /*false by default*/
+			"star": {
+				"alert": "warning",
+				"picto": "fa-star"
+			}
 		}
 	}
 }
 ```
+
+Refer to [Bootstrap doc](http://getbootstrap.com/components/#alerts) for alert value (`alert-` prefix is not needed).
+
+Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
