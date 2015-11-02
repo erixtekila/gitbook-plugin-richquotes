@@ -58,6 +58,12 @@ var cheerio = require( "cheerio" )
 		"quote": {
 			alert: "quote",
 			picto: "fa-quote-left"
+		},
+
+		/* Default */
+		"default": {
+			alert: "quote",
+			picto: "fa-quote-left"
 		}
 	}
 ;
@@ -81,7 +87,7 @@ module.exports = {
 				var richquotes = this.options.pluginsConfig.richquotes;
 				for (key in richquotes) {
 					// console.log(key, richquotes[key]);
-					options[key] = richquotes[key];
+					options[key] = richquotes[key] === false? undefined : richquotes[key];
 				}
 			}
 		},
@@ -119,9 +125,10 @@ module.exports = {
 
 						style = options[$strong.text().toLowerCase()]?  // look up annotation in options
 							options[$strong.text().toLowerCase()] :
-							{ alert: "quote", picto: "fa-quote-left" }    // default value
-							;
-						// console.log($strong.text().toLowerCase(), style);
+							options['default'];
+						if (!style) {
+							return;
+						}
 
 						$strong
 							.addClass( 'fa fa-4x ' + style.picto )
