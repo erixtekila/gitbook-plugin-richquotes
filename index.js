@@ -112,7 +112,7 @@ module.exports = {
 					{
 						$this = $( this );
 						$strong = $this.find( "p:first-child > strong:first-child" );
-						if( !$strong )
+						if( !$strong || $strong.length == 0)
 						{
 							return;
 						}
