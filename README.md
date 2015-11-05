@@ -19,17 +19,25 @@ Supported annotations :
 
 Annotations are case-insensitive.
 
-You can install this plugin via NPM :
+#### Installation
 
-```bash
-$ npm install gitbook-plugin-richquotes
+Add this plugin to your `book.json`:
+
+```js
+{
+	"plugins": ["richquotes"]
+}
 ```
+
+Then run `gitbook install` to download and install the plugin.
+
+#### Override built-in annotations
 
 You can add user defined or override built-in annotations in `book.json` file:
 
-```json
+```js
 {
-	"plugins"		: ["richquotes"],
+	"plugins": ["richquotes"],
 	"pluginsConfig":
 	{
 		"richquotes":
@@ -46,3 +54,21 @@ You can add user defined or override built-in annotations in `book.json` file:
 Refer to [Bootstrap doc](http://getbootstrap.com/components/#alerts) for alert value (`alert-` prefix is not needed).
 
 Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
+
+
+#### Disable default quote
+
+By default `richquote` will show a quote annotation. You can disable this behaviour in `book.json` file:
+
+```js
+{
+	"plugins": ["richquotes"],
+	"pluginsConfig":
+	{
+		"richquotes":
+		{
+			"default": false
+		}
+	}
+}
+```
