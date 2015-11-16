@@ -17,6 +17,8 @@ Supported annotations :
 - `> **Danger** Danger`
 - `> **Quote** Quote`
 
+![Preview of richquotes](preview.png)
+
 Annotations are case-insensitive.
 
 #### Installation
