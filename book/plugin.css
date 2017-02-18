@@ -1,3 +1,24 @@
+/* Override gitbook picto size */
+.fa-2x
+{
+    font-size: 2em;
+}
+
+.fa-3x
+{
+    font-size: 3em;
+}
+
+.fa-4x
+{
+    font-size: 4em;
+}
+
+.fa-5x
+{
+    font-size: 5em;
+}
+
 blockquote.alert > strong
 {
 	display      : inline-block;
