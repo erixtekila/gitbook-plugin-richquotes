@@ -131,7 +131,7 @@ module.exports = {
 						}
 
 						$strong
-							.addClass( 'fa fa-2x' + style.picto )
+							.addClass( 'fa fa-2x ' + style.picto )
 							.empty()
 							.remove()
 							;
