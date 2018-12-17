@@ -97,53 +97,43 @@ module.exports = {
 		// It should return the new page
 		page  : function ( page )
 		{
-			var section
-				,$bq
+			var $bq
 				,$this
 				,$strong
 				,style
 				;
 
-			for ( var i in page.sections )
-			{
-				section = page.sections[i];
-				if ( section.type !== "normal" )
+			$ = cheerio.load( page.content );
+			$bq = $( "blockquote" ).each(
+				function ()
 				{
-					continue;
-				}
-
-				$ = cheerio.load( section.content );
-				$bq = $( "blockquote" ).each(
-					function ()
+					$this = $( this );
+					$strong = $this.find( "p:first-child > strong:first-child" );
+					if( !$strong || $strong.length == 0)
 					{
-						$this = $( this );
-						$strong = $this.find( "p:first-child > strong:first-child" );
-						if( !$strong || $strong.length == 0)
-						{
-							return;
-						}
-
-						style = options[$strong.text().toLowerCase()]?  // look up annotation in options
-							options[$strong.text().toLowerCase()] :
-							options['default'];
-						if (!style) {
-							return;
-						}
-
-						$strong
-							.addClass( 'fa fa-2x ' + style.picto )
-							.empty()
-							.remove()
-							;
-						$this.addClass( 'clearfix alert alert-' + style.alert );
-						$this.prepend( $strong );
-
-						// Replace by the transformed element
-						section.content = $.html();
+						return;
 					}
-				);
-			}
 
+					style = options[$strong.text().toLowerCase()]?  // look up annotation in options
+						options[$strong.text().toLowerCase()] :
+						options['default'];
+					if (!style) {
+						return;
+					}
+
+					$strong
+						.addClass( 'fa fa-2x ' + style.picto )
+						.empty()
+						.remove()
+						;
+					$this.addClass( 'clearfix alert alert-' + style.alert );
+					$this.prepend( $strong );
+
+				}
+			);
+
+			// Replace by the transformed element
+			page.content = $.html();
 			return page;
 		}
 	}
